@@ -11,148 +11,110 @@
       background-color: #fff;
       color: #333;
     }
-
     header {
       text-align: center;
-      padding: 30px 10px 10px;
-    }
-
-    header img {
-      max-width: 160px;
-      height: auto;
-    }
-
-    h1 {
-      font-size: 1.8em;
-      color: #f4b6c2;
-    }
-
-    .cta {
-      text-align: center;
-      background-color: #fbeaec;
-      padding: 30px 10px;
-    }
-
-    .cta h2 {
-      font-size: 1.5em;
-      color: #f4b6c2;
-    }
-
-    .cta a {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #f4b6c2;
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
-      margin-top: 10px;
-    }
-
-    .produtos {
       padding: 20px;
+      background-color: #ffeaf0;
+    }
+    header img {
+      max-width: 200px;
+    }
+    .produtos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+    .produto {
+      background: #fff0f5;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px;
+      width: 160px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
     }
-
-    .produto {
-      background: #f9f9f9;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 10px auto;
-      max-width: 300px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
     .produto img {
       width: 100%;
-      height: auto;
-      border-radius: 10px;
+      border-radius: 8px;
     }
-
-    .produto h3 {
-      color: #333;
-    }
-
-    .produto p {
-      font-size: 0.95em;
-    }
-
-    .produto .preco {
+    .preco {
       font-weight: bold;
-      margin: 10px 0;
+      margin: 5px 0;
     }
-
-    .produto button {
-      padding: 10px;
+    .btn-comprar {
       background-color: #f4b6c2;
       color: white;
       border: none;
-      border-radius: 10px;
+      padding: 8px;
+      border-radius: 5px;
+      cursor: pointer;
     }
-
-    .whatsapp-btn {
+    .carrinho {
+      padding: 20px;
+      text-align: center;
+    }
+    .whatsapp {
       position: fixed;
       bottom: 15px;
       right: 15px;
       background-color: #25d366;
       color: white;
-      border: none;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      font-size: 20px;
-      text-align: center;
-      line-height: 45px;
-      z-index: 100;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      padding: 8px 12px;
+      border-radius: 25px;
+      font-size: 14px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
       text-decoration: none;
     }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #999;
-    }
   </style>
-  <!-- Ícone do WhatsApp -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
   <header>
-    <img src="logo-renda-dos-sonhos.png" alt="Logo Renda dos Sonhos" />
+    <img src="logo-renda-dos-sonhos.jpg" alt="Logo Renda dos Sonhos">
+    <h1>Renda dos Sonhos</h1>
   </header>
 
-  <section class="cta">
-    <h2>Descubra o conforto dos nossos pijamas</h2>
-    <a href="#produtos">Veja nossa coleção</a>
-  </section>
-
   <section class="produtos" id="produtos">
-    <h2>Moda Feminina - Pijamas Confortáveis</h2>
-
-    <div class="produto">
-      <img src="https://via.placeholder.com/300x200" alt="Pijama Floral" />
-      <h3>Pijama Floral</h3>
-      <p>Confortável e elegante, feito para noites de descanso.</p>
-      <p class="preco">R$ 129,90</p>
-      <button>Comprar Agora</button>
-    </div>
-
-    <div class="produto">
-      <img src="https://via.placeholder.com/300x200" alt="Pijama de Algodão" />
-      <h3>Pijama de Algodão</h3>
-      <p>Leve e fresco, ideal para qualquer estação.</p>
-      <p class="preco">R$ 99,90</p>
-      <button>Comprar Agora</button>
-    </div>
   </section>
 
-  <a class="whatsapp-btn" href="https://wa.me/5583982238275?text=Ol%C3%A1%20Nay!!%3F" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+  <section class="carrinho">
+    <h2>Resumo do Pedido</h2>
+    <p id="total">Total: R$ 0,00</p>
+    <button onclick="finalizarCompra()">Finalizar Compra</button>
+  </section>
 
-  <footer>
-    © 2025 Renda dos Sonhos - Nayeli Vitória
-  </footer>
+  <a class="whatsapp" href="https://wa.me/5583982238275?text=Ol%C3%A1%20Nay!!%3F" target="_blank">WhatsApp</a>
+
+  <script>
+    const produtos = [];
+    for (let i = 1; i <= 10; i++) {
+      produtos.push({ nome: "Pijama Algodão " + i, imagem: "https://via.placeholder.com/150", preco: 37 });
+      produtos.push({ nome: "Pijama Malha Fina " + i, imagem: "https://via.placeholder.com/150", preco: 37 });
+    }
+
+    const secaoProdutos = document.getElementById("produtos");
+    let total = 0;
+
+    produtos.forEach((p, index) => {
+      const div = document.createElement("div");
+      div.className = "produto";
+      div.innerHTML = `
+        <img src="${p.imagem}" alt="${p.nome}">
+        <h3>${p.nome}</h3>
+        <p class="preco">R$ ${p.preco.toFixed(2)}</p>
+        <button class="btn-comprar" onclick="adicionar(${p.preco})">Comprar</button>
+      `;
+      secaoProdutos.appendChild(div);
+    });
+
+    function adicionar(preco) {
+      total += preco;
+      document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
+    }
+
+    function finalizarCompra() {
+      alert("Compra finalizada! Total: R$ " + total.toFixed(2));
+    }
+  </script>
 </body>
 </html>
